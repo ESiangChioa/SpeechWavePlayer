@@ -5,23 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpeechWavePlayer"
         mc:Ignorable="d"
-        Title="音频剪辑器" Height="450" Width="800">
+        Title="声纹采集系统" Height="768" Width="1024">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <DockPanel>
-            <Button x:Name="BtnOpen" Content="打开" Height="30"  Margin="10" Click="BtnOpen_OnClick"/>
-                    <Button x:Name="BtnSave" Content="保存" Height="30"  Margin="10" Click="BtnSave_OnClick"/>
-                    <Button x:Name="BtnClip" Content="剪切" Height="30"  Margin="10" Click="BtnClip_OnClick"/>
-                    <Button x:Name="BtnCopy" Content="复制" Height="30"  Margin="10" Click="BtnCopy_OnClick"/>
-                    <Button x:Name="BtnPaste" Content="粘贴" Height="30"  Margin="10" Click="BtnPaste_OnClick"/>
-                    <Button x:Name="BtnDelSeg" Content="删除片段" Height="30"   Margin="10" Click="BtnDelSeg_OnClick"/>
-                    <Button x:Name="BtnCleanSeg" Content="清除数据" Height="30"   Margin="10" Click="BtnCleanSeg_OnClick"/>
-                    <Button x:Name="BtnUndo" Content="撤销" Height="30"  Margin="10" Click="BtnUndo_OnClick"/>
-                    <Button x:Name="BtnRecover" Content="恢复" Height="30"   Margin="10" Click="BtnRecover_OnClick" Cursor="Hand"/>
-        </DockPanel>
-        <local:WavePlayer Grid.Row="1" x:Name="Player"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <local:WavePlayer  Grid.Row="0" Grid.Column="0" x:Name="Player"/>
+        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+            <Button x:Name="BtnStart" Content="开始录音" Height="30"  Margin="10" Click="BtnStart_Click" />
+            <Button x:Name="BtnStop" Content="结束录音" Height="30"  Margin="10" Click="BtnStop_Click"/>
+            <Button x:Name="BtnLook" Content="查看" Height="30"  Margin="10" Click="BtnLook_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="录音时长"/>
+                <Label Grid.Column="1" Content="录音时长"/>
+                <Label Grid.Column="2" Content="有效时长"/>
+                <Label Grid.Column="3" Content="录音时长"/>
+            </Grid>
+            <DockPanel Margin="0,20,0,10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="同一人识别"/>
+                    <Label Grid.Row="0" Grid.Column="1" Content=""/>
+                    <Label Grid.Row="0" Grid.Column="2" Content="语种"/>
+                    <Label Grid.Row="0" Grid.Column="3" Content=""/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="性别"/>
+                    <Label Grid.Row="1" Grid.Column="1" Content=""/>
+                    <Label Grid.Row="1" Grid.Column="2" Content="年龄"/>
+                    <Label Grid.Row="1" Grid.Column="3" Content=""/>
+                </Grid>
+
+            </DockPanel>
+        </StackPanel>
     </Grid>
 </Window>

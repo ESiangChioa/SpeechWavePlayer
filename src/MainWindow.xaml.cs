@@ -154,7 +154,7 @@ namespace SpeechWavePlayer
             if (!Clipboard.ContainsAudio()) return;
             Stream replacementAudioStream = Clipboard.GetAudioStream();
             var clipData = new byte[replacementAudioStream.Length];
-            this.BtnPaste.IsEnabled = false;
+            //this.BtnPaste.IsEnabled = false;
             replacementAudioStream.Read(clipData, 0, (int)replacementAudioStream.Length);
             int pos = Player.GetCurrentSampleIndex() * 2;
             var newData = new byte[currentSpeechOriginData.Length + clipData.Length];
@@ -164,7 +164,7 @@ namespace SpeechWavePlayer
             string outPath = System.IO.Path.Combine(saveSpeechTempPath, $"{fileName}_{DateTime.Now:yyyyMMddssfff}.wav");
             SaveSpeech(outPath, newData);
             AddSpeechToDictionary(outPath);
-            this.BtnPaste.IsEnabled = true;
+            //this.BtnPaste.IsEnabled = true;
             this.LoadSpeech();
         }
 
@@ -305,6 +305,21 @@ namespace SpeechWavePlayer
             }
 
             return File.Exists(outPath) ? outPath : filePath;
+        }
+
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnStop_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnLook_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

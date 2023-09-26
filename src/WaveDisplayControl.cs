@@ -68,10 +68,10 @@ public class WaveDisplayControl: FrameworkElement
         visualCollections = new VisualCollection(this);
         isWaveSelectionClick = false;
         this.SizeChanged += SpeechWaveDisplay_SizeChanged;
-        this.MouseLeftButtonDown += SpeechWaveDisplay_MouseLeftButtonDown;
-        this.MouseMove += SpeechWaveDisplay_MouseMove;
-        this.MouseLeftButtonUp += SpeechWaveDisplay_MouseLeftButtonUp;
-        this.MouseWheel += SpeechWaveDisplay_MouseWheel; ;
+        //this.MouseLeftButtonDown += SpeechWaveDisplay_MouseLeftButtonDown;
+        //this.MouseMove += SpeechWaveDisplay_MouseMove;
+        //this.MouseLeftButtonUp += SpeechWaveDisplay_MouseLeftButtonUp;
+        //this.MouseWheel += SpeechWaveDisplay_MouseWheel; ;
     }
 
     public void SetCurrentSample(double ms)
@@ -106,9 +106,9 @@ public class WaveDisplayControl: FrameworkElement
     }
     private void SpeechWaveDisplay_SizeChanged(object sender, SizeChangedEventArgs e)
     {
-        topRect = new Rect(winX, winY, ActualWidth - 2 * winX, 30);
-        centerRect = new Rect(winX, topRect.Bottom + 5, topRect.Width, ActualHeight - 2 * winY - topRect.Height - 30);
-        rightRect = new Rect(centerRect.Right, this.topRect.Bottom, ActualWidth - topRect.Width, centerRect.Height);
+        topRect = new Rect(winX, winY, ActualWidth - 2 * winX, 0);
+        rightRect = new Rect(winX, this.topRect.Bottom, ActualWidth - topRect.Width, centerRect.Height);
+        centerRect = new Rect(rightRect.Right, topRect.Bottom + 5, topRect.Width, ActualHeight - 2 * winY - topRect.Height - 30);
         bottomRect = new Rect(winX, centerRect.Bottom, this.centerRect.Width, 30);
         this.Init();
     }
@@ -120,14 +120,14 @@ public class WaveDisplayControl: FrameworkElement
         Rect backgroundRect = new Rect(0, 0, ActualWidth, ActualHeight);
         drawingContext.DrawRectangle(backgourndBrush, new Pen(Brushes.Gray, 0), backgroundRect);
         drawingContext.DrawRectangle(waveBackgroundBrush, new Pen(Brushes.DarkGray, 0), centerRect);
-        drawingContext.DrawRectangle(waveBackgroundBrush, new Pen(Brushes.DarkGray, 0), topRect);
+        //drawingContext.DrawRectangle(waveBackgroundBrush, new Pen(Brushes.DarkGray, 0), topRect);
         //drawingContext.DrawRectangle(Brushes.LightBlue, new Pen(Brushes.DarkGray, 1), rightRect);
         //drawingContext.DrawRectangle(Brushes.LightBlue, new Pen(Brushes.DarkGray, 1), bottomRect);
 
         drawingContext.Close();
         visualCollections.Add(drawingVisual); //绘制基本背景
         DrawCenterGrid();                     //绘制网格
-        //DrawRightFreqScale(PCM_MIN_AMPLITUDE_VALUE, PCM_MAX_AMPLITUDE_VALUE);//绘制右侧频率刻度
+        DrawRightFreqScale(PCM_MIN_AMPLITUDE_VALUE, PCM_MAX_AMPLITUDE_VALUE);//绘制右侧频率刻度
     }
 
     private void Update()
@@ -143,7 +143,7 @@ public class WaveDisplayControl: FrameworkElement
         DrawScrollBar();
         DrawBottomTimeScale(pageStartSamples / 8, (pageStartSamples + perPageSamples) / 8);      //绘制底部时间刻度
         DrawCenterWaveR1();
-        DrawWaveSelection();
+        //DrawWaveSelection();
     }
 
     public void SetSpeechData(byte[] speechData)
@@ -158,7 +158,7 @@ public class WaveDisplayControl: FrameworkElement
         selectionStartSampleIndex = 0;
         selectionEndSampleIndex = 0;
 
-        DrawTopWave(); //画顶部波形
+        //DrawTopWave(); //画顶部波形
 
         Update();
 
